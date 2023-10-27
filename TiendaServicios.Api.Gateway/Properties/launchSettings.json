@@ -1,6 +1,6 @@
 {
   "profiles": {
-    "TiendaServicios.Api.CarritoCompra": {
+    "http": {
       "commandName": "Project",
       "launchBrowser": true,
       "launchUrl": "swagger",
@@ -8,7 +8,7 @@
         "ASPNETCORE_ENVIRONMENT": "Development"
       },
       "dotnetRunMessages": true,
-      "applicationUrl": "http://localhost:5084"
+      "applicationUrl": "http://localhost:5043"
     },
     "IIS Express": {
       "commandName": "IISExpress",
@@ -33,7 +33,7 @@
     "windowsAuthentication": false,
     "anonymousAuthentication": true,
     "iisExpress": {
-      "applicationUrl": "http://localhost:1525",
+      "applicationUrl": "http://localhost:48477",
       "sslPort": 0
     }
   }

@@ -4,6 +4,8 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using TiendaServicios.Api.Libros.Aplicacion;
 using TiendaServicios.Api.Libros.Persistencia;
+using TiendaServicios.RabbitMQ.Bus.BusRabbit;
+using TiendaServicios.RabbitMQ.Bus.Implement;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -14,6 +16,16 @@ builder.Services.AddControllers().AddFluentValidation(cfg => cfg.RegisterValidat
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+
+//builder.Services.AddTransient<IRabbitEventBus, RabbitEventBus>();
+builder.Services.AddSingleton<IRabbitEventBus, RabbitEventBus>(sp =>
+{
+	var scopeFactory = sp.GetRequiredService<IServiceScopeFactory>();
+	return new RabbitEventBus(sp.GetService<IMediator>(), scopeFactory);
+});
+
+//builder.Services.AddTransient<EmailEventoManejador>();
+
 
 builder.Services.AddDbContext<ContextoLibreria>(opt =>
 {
